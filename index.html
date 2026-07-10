@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trường THCS-THPT Liên Việt Kon Tum</title>
+
+    <meta name="description" content="Website giới thiệu Trường THCS-THPT Liên Việt Kon Tum">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/6b8b7d6d4b.js" crossorigin="anonymous"></script>
+
+    <style>
+
+    :root{
+        --navy:#0B3C6B;
+        --blue:#1D4ED8;
+        --gold:#F5B700;
+        --coral:#E85D3D;
+        --paper:#F5F7FB;
+        --ink:#1E293B;
+    }
+
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Be Vietnam Pro',sans-serif;
+    }
+
+    html{
+        scroll-behavior:smooth;
+    }
+
+    body{
+        background:
+            radial-gradient(circle at top left, rgba(29,78,216,.12), transparent 24%),
+            linear-gradient(135deg, #f8fbff 0%, var(--paper) 45%, #eef5ff 100%);
+        color:var(--ink);
+        overflow-x:hidden;
+    }
+
+    body::before,
+    body::after{
+        content:"";
+        position:fixed;
+        inset:auto;
+        width:320px;
+        height:320px;
+        border-radius:999px;
+        filter:blur(90px);
+        z-index:-1;
+        opacity:.35;
+        pointer-events:none;
+    }
+    body::before{ top:-80px; right:-100px; background:rgba(29,78,216,.18); }
+    body::after{ left:-130px; bottom:-80px; background:rgba(245,183,0,.2); }
+
+    h1,h2,h3,h4,.font-display{
+        font-family:'Sora',sans-serif;
+    }
+
+    .glass{
+        backdrop-filter:blur(18px);
+        background:rgba(255,255,255,.78);
+        border:1px solid rgba(255,255,255,.4);
+    }
+
+    .hero{
+        background:
+        linear-gradient(105deg, rgba(6,25,52,.86) 0%, rgba(11,60,107,.72) 45%, rgba(29,78,216,.58) 100%),
+        url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80");
+        background-size:cover;
+        background-position:center;
+        position:relative;
+    }
+
+    .hero::after{
+        content:"";
+        position:absolute;
+        inset:0;
+        background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.08) 45%, transparent 100%);
+        pointer-events:none;
+    }
+
+    .ruled{
+        position:relative;
+        background-image:repeating-linear-gradient(
+            to bottom,
+            rgba(11,60,107,.05) 0,
+            rgba(11,60,107,.05) 1px,
+            transparent 1px,
+            transparent 40px
+        );
+    }
+    .ruled::before{
+        content:"";
+        position:absolute;
+        top:0; bottom:0; left:48px;
+        width:2px;
+        background:linear-gradient(180deg, rgba(232,93,61,.6), rgba(232,93,61,.16));
+    }
+    @media (max-width:768px){
+        .ruled::before{ left:24px; }
+    }
+
+    .eyebrow{
+        font-family:'Sora',sans-serif;
+        letter-spacing:.14em;
+        text-transform:uppercase;
+        font-size:.75rem;
+        font-weight:700;
+        color:var(--coral);
+    }
+
+    .card{ transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
+    .card:hover{
+        transform:translateY(-10px) scale(1.01);
+        box-shadow:0 24px 60px rgba(8, 30, 67, .16);
+    }
+
+    .section-shell{
+        position:relative;
+        border-radius:2rem;
+        background:rgba(255,255,255,.86);
+        box-shadow:0 25px 70px rgba(15, 23, 42, .08);
+        border:1px solid rgba(148, 163, 184, .16);
+    }
+
+    .hero-card{
+        backdrop-filter:blur(16px);
+        background:rgba(255,255,255,.15);
+        border:1px solid rgba(255,255,255,.24);
+        box-shadow:0 20px 60px rgba(2, 6, 23, .25);
+    }
+
+    .soft-ring{
+        border:1px solid rgba(29,78,216,.14);
+        box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
+    }
+
+    .reveal{
+        opacity:0;
+        transform:translateY(24px);
+        transition:opacity .7s ease, transform .7s ease;
+    }
+    .reveal.show{ opacity:1; transform:translateY(0); }
+
+    .tag-dot::before{
+        content:"";
+        display:inline-block;
+        width:8px;height:8px;
+        border-radius:50%;
+        background:var(--coral);
+        margin-right:8px;
+    }
+
+    #mobile-menu{
+        transition:max-height .35s ease;
+        max-height:0;
+        overflow:hidden;
+    }
+    #mobile-menu.open{ max-height:400px; }
+
+    .num-badge{
+        font-family:'Sora',sans-serif;
+        font-weight:800;
+        font-size:.85rem;
+        color:var(--navy);
+        background:linear-gradient(135deg, #eaf3ff 0%, #dbeafe 100%);
+        border-radius:999px;
+        width:38px;height:38px;
+        display:flex;align-items:center;justify-content:center;
+        flex-shrink:0;
+        box-shadow:0 8px 20px rgba(29,78,216,.12);
+    }
+
+    .focus-ring:focus-visible{
+        outline:3px solid var(--gold);
+        outline-offset:2px;
+    }
+
+    .gallery-card::after{
+        content:"";
+        position:absolute;
+        inset:0;
+        background:linear-gradient(180deg, transparent 0%, rgba(11,60,107,.6) 100%);
+        opacity:0;
+        transition:opacity .35s ease;
+        border-radius:1rem;
+    }
+    .gallery-card:hover::after{ opacity:1; }
+
+    @media (prefers-reduced-motion: reduce){
+        .reveal{ transition:none; opacity:1; transform:none; }
+    }
+
+    </style>
+
+</head>
+
+<body>
+
+<header class="fixed top-0 left-0 w-full z-50 glass">
+
+<div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+
+<div class="flex items-center gap-4">
+
+<img src="https://tse3.mm.bing.net/th/id/OIP.sOgueRK0lBh8slkcxMlt1wHaHa?r=0&pid=Api&P=0&h=180" width="60" alt="Logo Trường THCS-THPT Liên Việt Kon Tum">
+
+<div>
+<h1 class="font-bold text-xl font-display">THCS-THPT Liên Việt</h1>
+<p class="text-sm text-gray-600">Kon Tum</p>
+</div>
+
+</div>
+
+<nav class="hidden lg:flex gap-8 font-medium">
+<a href="#" class="hover:text-blue-600 focus-ring">Trang chủ</a>
+<a href="#gioithieu" class="hover:text-blue-600 focus-ring">Giới thiệu</a>
+<a href="#tintuc" class="hover:text-blue-600 focus-ring">Tin tức</a>
+<a href="#thanh-tich" class="hover:text-blue-600 focus-ring">Thành tích</a>
+<a href="#gallery" class="hover:text-blue-600 focus-ring">Thư viện</a>
+<a href="#contact" class="hover:text-blue-600 focus-ring">Liên hệ</a>
+</nav>
+
+<div class="flex items-center gap-3">
+
+<a href="#tuyensinh" class="hidden sm:inline-block bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-full focus-ring">
+Tuyển sinh
+</a>
+
+<button id="menu-btn" aria-label="Mở menu" aria-expanded="false" class="lg:hidden text-2xl text-blue-800 focus-ring">
+<i class="fa-solid fa-bars"></i>
+</button>
+
+</div>
+
+</div>
+
+<div id="mobile-menu" class="lg:hidden px-6">
+<nav class="flex flex-col gap-4 py-4 border-t font-medium">
+<a href="#" class="focus-ring">Trang chủ</a>
+<a href="#gioithieu" class="focus-ring">Giới thiệu</a>
+<a href="#tintuc" class="focus-ring">Tin tức</a>
+<a href="#thanh-tich" class="focus-ring">Thành tích</a>
+<a href="#gallery" class="focus-ring">Thư viện</a>
+<a href="#contact" class="focus-ring">Liên hệ</a>
+<a href="#tuyensinh" class="bg-blue-700 text-white text-center px-6 py-3 rounded-full focus-ring">Tuyển sinh</a>
+</nav>
+</div>
+
+</header>
+
+<section class="hero min-h-screen flex items-center relative overflow-hidden">
+
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,183,0,0.18),transparent_28%)]"></div>
+
+<div class="max-w-7xl mx-auto px-8 py-20 lg:py-24 text-white relative z-10 grid lg:grid-cols-[1.15fr_0.85fr] gap-12 items-center">
+
+<div class="max-w-2xl">
+<span class="inline-flex items-center gap-2 bg-white/20 px-5 py-2 rounded-full text-sm font-medium backdrop-blur-sm">🏫 Chào mừng đến với trường</span>
+
+<h2 class="text-5xl sm:text-6xl font-extrabold mt-8 leading-tight font-display">
+TRƯỜNG<br>THCS - THPT<br>LIÊN VIỆT KON TUM
+</h2>
+
+<p class="max-w-2xl text-lg sm:text-xl mt-8 text-gray-100 leading-8">
+Nơi nuôi dưỡng tri thức, phát triển kỹ năng và xây dựng thế hệ học sinh tự tin, sáng tạo và hội nhập toàn cầu.
+</p>
+
+<div class="mt-10 flex flex-wrap gap-5">
+<a href="#gioithieu" class="bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-4 rounded-full font-bold shadow-lg shadow-yellow-500/20 focus-ring">Khám phá</a>
+<a href="#contact" class="border border-white/70 px-8 py-4 rounded-full hover:bg-white hover:text-black transition focus-ring">Liên hệ</a>
+</div>
+
+<div class="mt-10 flex flex-wrap gap-3">
+<span class="rounded-full bg-white/15 px-4 py-2 text-sm backdrop-blur-sm">📚 Chương trình học hiện đại</span>
+<span class="rounded-full bg-white/15 px-4 py-2 text-sm backdrop-blur-sm">🏅 Thành tích nổi bật</span>
+<span class="rounded-full bg-white/15 px-4 py-2 text-sm backdrop-blur-sm">🌟 Môi trường thân thiện</span>
+</div>
+</div>
+
+<div class="hero-card rounded-[2rem] p-7 sm:p-8 reveal">
+<div class="flex items-center justify-between">
+<div>
+<p class="text-sm uppercase tracking-[0.25em] text-blue-100">Tầm nhìn</p>
+<h3 class="text-2xl font-bold mt-2 font-display">Giáo dục toàn diện</h3>
+</div>
+<div class="rounded-2xl bg-white/15 p-3 text-2xl"><i class="fa-solid fa-graduation-cap"></i></div>
+</div>
+
+<div class="mt-8 grid gap-4 sm:grid-cols-2">
+<div class="rounded-2xl bg-white/10 p-4 soft-ring">
+<p class="text-sm text-blue-100">Học sinh</p>
+<p class="text-3xl font-bold mt-1 font-display">1.000+</p>
+</div>
+<div class="rounded-2xl bg-white/10 p-4 soft-ring">
+<p class="text-sm text-blue-100">Giáo viên</p>
+<p class="text-3xl font-bold mt-1 font-display">80+</p>
+</div>
+<div class="rounded-2xl bg-white/10 p-4 soft-ring sm:col-span-2">
+<p class="text-sm text-blue-100">Sứ mệnh</p>
+<p class="text-base leading-7 mt-2 text-white/90">Xây dựng môi trường học tập hiện đại, phát huy đam mê, tư duy sáng tạo và trách nhiệm xã hội cho mỗi học sinh.</p>
+</div>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section id="gioithieu" class="py-24">
+
+<div class="max-w-7xl mx-auto px-8">
+
+<div class="section-shell p-8 sm:p-10 lg:p-12">
+<div class="grid lg:grid-cols-[0.95fr_1.05fr] gap-12 items-center">
+
+<div class="reveal">
+<img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80" class="rounded-[1.75rem] shadow-2xl w-full h-[420px] object-cover" alt="Khuôn viên Trường THCS-THPT Liên Việt Kon Tum">
+</div>
+
+<div class="reveal">
+<span class="eyebrow tag-dot">Về chúng tôi</span>
+<h3 class="text-4xl font-bold mb-6 mt-3 font-display">Giới thiệu nhà trường</h3>
+
+<p class="text-lg leading-8 text-gray-700">
+Trường THCS-THPT Liên Việt Kon Tum hướng tới một môi trường giáo dục hiện đại, lấy học sinh làm trung tâm, kết hợp kiến thức, kỹ năng và đạo đức để mỗi em phát triển toàn diện và tự tin bước vào tương lai.
+</p>
+
+<div class="grid sm:grid-cols-2 gap-6 mt-10">
+<div class="card bg-gradient-to-br from-blue-50 to-white rounded-2xl p-6 border border-blue-100">
+<h2 class="text-4xl font-bold text-blue-700 font-display counter" data-target="1000">0</h2>
+<p class="mt-2 text-gray-700">Học sinh</p>
+</div>
+<div class="card bg-gradient-to-br from-blue-50 to-white rounded-2xl p-6 border border-blue-100">
+<h2 class="text-4xl font-bold text-blue-700 font-display counter" data-target="80">0</h2>
+<p class="mt-2 text-gray-700">Giáo viên</p>
+</div>
+<div class="card bg-gradient-to-br from-blue-50 to-white rounded-2xl p-6 border border-blue-100">
+<h2 class="text-4xl font-bold text-blue-700 font-display counter" data-target="30">0</h2>
+<p class="mt-2 text-gray-700">Lớp học</p>
+</div>
+<div class="card bg-gradient-to-br from-blue-50 to-white rounded-2xl p-6 border border-blue-100">
+<h2 class="text-4xl font-bold text-blue-700 font-display counter" data-target="15">0</h2>
+<p class="mt-2 text-gray-700">Năm phát triển</p>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- TIN TỨC -->
+<section id="tintuc" class="ruled py-24">
+
+<div class="max-w-7xl mx-auto px-8">
+
+<div class="pl-16 sm:pl-20 reveal">
+<span class="eyebrow tag-dot">Cập nhật</span>
+<h3 class="text-4xl font-bold mt-3 font-display">Tin tức &amp; hoạt động</h3>
+<p class="text-gray-600 mt-4 max-w-2xl">Những câu chuyện mới nhất về phong trào học tập, hoạt động ngoại khóa và các sự kiện ý nghĩa tại trường.</p>
+</div>
+
+<div class="grid md:grid-cols-3 gap-8 mt-14 pl-16 sm:pl-20">
+
+<article class="card reveal bg-white rounded-[1.5rem] overflow-hidden shadow-[0_20px_45px_rgba(15,23,42,0.08)] border border-slate-100">
+<img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80" class="w-full h-52 object-cover" alt="Lễ khai giảng năm học mới">
+<div class="p-6">
+<span class="text-xs text-blue-700 font-semibold">05/09/2026</span>
+<h4 class="text-xl font-bold mt-2 font-display">Lễ khai giảng năm học 2026 - 2027</h4>
+<p class="text-gray-600 mt-3 text-sm leading-6">Không khí rộn ràng chào đón năm học mới cùng hơn 1000 học sinh toàn trường.</p>
+<a href="#" class="inline-block mt-4 text-blue-700 font-semibold hover:underline focus-ring">Xem thêm →</a>
+</div>
+</article>
+
+<article class="card reveal bg-white rounded-[1.5rem] overflow-hidden shadow-[0_20px_45px_rgba(15,23,42,0.08)] border border-slate-100">
+<img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=900&q=80" class="w-full h-52 object-cover" alt="Hội thao học sinh">
+<div class="p-6">
+<span class="text-xs text-blue-700 font-semibold">18/09/2026</span>
+<h4 class="text-xl font-bold mt-2 font-display">Hội thao truyền thống toàn trường</h4>
+<p class="text-gray-600 mt-3 text-sm leading-6">Sân chơi thể thao gắn kết học sinh các khối lớp qua nhiều bộ môn sôi động.</p>
+<a href="#" class="inline-block mt-4 text-blue-700 font-semibold hover:underline focus-ring">Xem thêm →</a>
+</div>
+</article>
+
+<article class="card reveal bg-white rounded-[1.5rem] overflow-hidden shadow-[0_20px_45px_rgba(15,23,42,0.08)] border border-slate-100">
+<img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&q=80" class="w-full h-52 object-cover" alt="Cuộc thi khoa học kỹ thuật">
+<div class="p-6">
+<span class="text-xs text-blue-700 font-semibold">02/10/2026</span>
+<h4 class="text-xl font-bold mt-2 font-display">Cuộc thi Khoa học kỹ thuật cấp trường</h4>
+<p class="text-gray-600 mt-3 text-sm leading-6">Học sinh trình bày các dự án sáng tạo, ứng dụng thực tiễn vào đời sống.</p>
+<a href="#" class="inline-block mt-4 text-blue-700 font-semibold hover:underline focus-ring">Xem thêm →</a>
+</div>
+</article>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- THÀNH TÍCH -->
+<section id="thanh-tich" class="py-24 bg-white/70">
+
+<div class="max-w-7xl mx-auto px-8">
+
+<div class="reveal">
+<span class="eyebrow tag-dot">Dấu ấn</span>
+<h3 class="text-4xl font-bold mt-3 font-display">Thành tích nổi bật</h3>
+<p class="text-gray-600 mt-4 max-w-2xl">Hành trình phát triển được ghi dấu bằng những kết quả đáng tự hào qua từng năm học.</p>
+</div>
+
+<div class="mt-14 grid lg:grid-cols-3 gap-6">
+
+<div class="reveal card bg-gradient-to-br from-blue-50 to-white rounded-[1.5rem] p-7 border border-blue-100">
+<div class="flex items-center gap-3">
+<span class="num-badge">01</span>
+<p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">Đỗ tốt nghiệp</p>
+</div>
+<h4 class="font-bold text-xl mt-5 font-display">Top trường có tỷ lệ đỗ tốt nghiệp THPT cao tại Kon Tum</h4>
+<p class="text-gray-600 mt-3 text-sm leading-6">Nhiều năm liền đạt tỷ lệ đỗ tốt nghiệp trên 98%.</p>
+</div>
+
+<div class="reveal card bg-gradient-to-br from-blue-50 to-white rounded-[1.5rem] p-7 border border-blue-100">
+<div class="flex items-center gap-3">
+<span class="num-badge">02</span>
+<p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">Khoa học</p>
+</div>
+<h4 class="font-bold text-xl mt-5 font-display">Giải Nhất - Hội thi Khoa học kỹ thuật cấp tỉnh</h4>
+<p class="text-gray-600 mt-3 text-sm leading-6">Dự án nghiên cứu của học sinh được đánh giá cao về tính ứng dụng và khả năng triển khai.</p>
+</div>
+
+<div class="reveal card bg-gradient-to-br from-blue-50 to-white rounded-[1.5rem] p-7 border border-blue-100">
+<div class="flex items-center gap-3">
+<span class="num-badge">03</span>
+<p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">Danh hiệu</p>
+</div>
+<h4 class="font-bold text-xl mt-5 font-display">Trường học thân thiện, học sinh tích cực</h4>
+<p class="text-gray-600 mt-3 text-sm leading-6">Được Sở Giáo dục và Đào tạo tỉnh Kon Tum công nhận danh hiệu nhiều năm liên tiếp.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- THƯ VIỆN -->
+<section id="gallery" class="ruled py-24">
+
+<div class="max-w-7xl mx-auto px-8">
+
+<div class="pl-16 sm:pl-20 reveal">
+<span class="eyebrow tag-dot">Khoảnh khắc</span>
+<h3 class="text-4xl font-bold mt-3 font-display">Thư viện ảnh</h3>
+<p class="text-gray-600 mt-4 max-w-2xl">Những hình ảnh về cơ sở vật chất, lớp học và các hoạt động phong phú của nhà trường.</p>
+</div>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-14 pl-16 sm:pl-20">
+
+<div class="gallery-card reveal relative overflow-hidden rounded-[1rem] shadow-md">
+<img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80" class="h-44 w-full object-cover" alt="Hoạt động ngoại khóa">
+<div class="absolute inset-x-0 bottom-0 p-4 text-white z-10"><p class="font-semibold">Hoạt động ngoại khóa</p></div>
+</div>
+<div class="gallery-card reveal relative overflow-hidden rounded-[1rem] shadow-md">
+<img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=80" class="h-44 w-full object-cover" alt="Phòng học">
+<div class="absolute inset-x-0 bottom-0 p-4 text-white z-10"><p class="font-semibold">Phòng học hiện đại</p></div>
+</div>
+<div class="gallery-card reveal relative overflow-hidden rounded-[1rem] shadow-md">
+<img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=900&q=80" class="h-44 w-full object-cover" alt="Thư viện trường">
+<div class="absolute inset-x-0 bottom-0 p-4 text-white z-10"><p class="font-semibold">Thư viện trường</p></div>
+</div>
+<div class="gallery-card reveal relative overflow-hidden rounded-[1rem] shadow-md">
+<img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=80" class="h-44 w-full object-cover" alt="Sân trường">
+<div class="absolute inset-x-0 bottom-0 p-4 text-white z-10"><p class="font-semibold">Sân trường xanh</p></div>
+</div>
+<div class="gallery-card reveal relative overflow-hidden rounded-[1rem] shadow-md">
+<img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80" class="h-44 w-full object-cover" alt="Lễ hội văn hóa">
+<div class="absolute inset-x-0 bottom-0 p-4 text-white z-10"><p class="font-semibold">Lễ hội văn hóa</p></div>
+</div>
+<div class="gallery-card reveal relative overflow-hidden rounded-[1rem] shadow-md">
+<img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=900&q=80" class="h-44 w-full object-cover" alt="Phòng thí nghiệm">
+<div class="absolute inset-x-0 bottom-0 p-4 text-white z-10"><p class="font-semibold">Phòng thí nghiệm</p></div>
+</div>
+<div class="gallery-card reveal relative overflow-hidden rounded-[1rem] shadow-md">
+<img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=80" class="h-44 w-full object-cover" alt="Câu lạc bộ học sinh">
+<div class="absolute inset-x-0 bottom-0 p-4 text-white z-10"><p class="font-semibold">Câu lạc bộ học sinh</p></div>
+</div>
+<div class="gallery-card reveal relative overflow-hidden rounded-[1rem] shadow-md">
+<img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=900&q=80" class="h-44 w-full object-cover" alt="Sự kiện thể thao">
+<div class="absolute inset-x-0 bottom-0 p-4 text-white z-10"><p class="font-semibold">Sự kiện thể thao</p></div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TUYỂN SINH -->
+<section id="tuyensinh" class="py-24 bg-gradient-to-br from-[#0B3C6B] to-[#1D4ED8] text-white">
+
+<div class="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-12 items-center">
+
+<div class="reveal">
+<span class="eyebrow text-yellow-300">Tuyển sinh 2026 - 2027</span>
+<h3 class="text-4xl font-bold mt-3 font-display">Chào đón thế hệ học sinh mới</h3>
+<p class="text-blue-100 mt-6 leading-8 max-w-xl">
+Trường THCS-THPT Liên Việt Kon Tum đang tuyển sinh các khối lớp 6, 10 năm học 2026 - 2027. Hồ sơ được tiếp nhận trực tiếp tại trường hoặc qua hình thức đăng ký trực tuyến.
+</p>
+<a href="#contact" class="inline-block mt-8 bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-4 rounded-full font-bold shadow-lg shadow-yellow-500/20 focus-ring">
+Đăng ký tư vấn
+</a>
+</div>
+
+<div class="reveal grid sm:grid-cols-2 gap-6">
+
+<div class="bg-white/10 rounded-2xl p-6 border border-white/10">
+<i class="fa-solid fa-file-signature text-2xl text-yellow-300"></i>
+<h4 class="font-bold mt-4 font-display">Hồ sơ đơn giản</h4>
+<p class="text-sm text-blue-100 mt-2">Hướng dẫn chi tiết, hỗ trợ tận tình</p>
+</div>
+
+<div class="bg-white/10 rounded-2xl p-6 border border-white/10">
+<i class="fa-solid fa-hand-holding-dollar text-2xl text-yellow-300"></i>
+<h4 class="font-bold mt-4 font-display">Học bổng</h4>
+<p class="text-sm text-blue-100 mt-2">Chính sách ưu đãi cho học sinh giỏi</p>
+</div>
+
+<div class="bg-white/10 rounded-2xl p-6 border border-white/10">
+<i class="fa-solid fa-bus text-2xl text-yellow-300"></i>
+<h4 class="font-bold mt-4 font-display">Xe đưa đón</h4>
+<p class="text-sm text-blue-100 mt-2">Tuyến đường phủ khắp thành phố</p>
+</div>
+
+<div class="bg-white/10 rounded-2xl p-6 border border-white/10">
+<i class="fa-solid fa-utensils text-2xl text-yellow-300"></i>
+<h4 class="font-bold mt-4 font-display">Bán trú</h4>
+<p class="text-sm text-blue-100 mt-2">Bữa ăn dinh dưỡng, đảm bảo vệ sinh</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- LIÊN HỆ -->
+<section id="contact" class="py-24 bg-white">
+
+<div class="max-w-7xl mx-auto px-8 grid lg:grid-cols-[0.95fr_1.05fr] gap-14">
+
+<div class="reveal">
+<span class="eyebrow tag-dot">Kết nối</span>
+<h3 class="text-4xl font-bold mt-3 font-display">Liên hệ với chúng tôi</h3>
+<p class="text-gray-600 mt-4 leading-8">Mọi thắc mắc về tuyển sinh, chương trình học và hoạt động nhà trường, quý phụ huynh và học sinh vui lòng liên hệ theo thông tin dưới đây.</p>
+
+<div class="mt-10 space-y-5">
+<div class="flex items-start gap-4 rounded-2xl bg-slate-50 p-4">
+<span class="num-badge"><i class="fa-solid fa-location-dot text-sm"></i></span>
+<p class="text-gray-700">123 Đường Trường Chinh, TP. Kon Tum, tỉnh Kon Tum</p>
+</div>
+<div class="flex items-start gap-4 rounded-2xl bg-slate-50 p-4">
+<span class="num-badge"><i class="fa-solid fa-phone text-sm"></i></span>
+<p class="text-gray-700">0260 3 xxx xxx</p>
+</div>
+<div class="flex items-start gap-4 rounded-2xl bg-slate-50 p-4">
+<span class="num-badge"><i class="fa-solid fa-envelope text-sm"></i></span>
+<p class="text-gray-700">lienvietkontum@example.edu.vn</p>
+</div>
+</div>
+
+</div>
+
+<form class="reveal grid gap-5 bg-gradient-to-br from-blue-50 to-white rounded-[2rem] p-8 shadow-[0_20px_50px_rgba(15,23,42,0.08)] border border-blue-100">
+
+<div>
+<label for="name" class="text-sm font-semibold">Họ và tên</label>
+<input id="name" name="name" type="text" required class="w-full mt-2 rounded-xl border border-gray-300 px-4 py-3 focus-ring bg-white">
+</div>
+
+<div>
+<label for="phone" class="text-sm font-semibold">Số điện thoại</label>
+<input id="phone" name="phone" type="tel" required class="w-full mt-2 rounded-xl border border-gray-300 px-4 py-3 focus-ring bg-white">
+</div>
+
+<div>
+<label for="message" class="text-sm font-semibold">Nội dung</label>
+<textarea id="message" name="message" rows="4" class="w-full mt-2 rounded-xl border border-gray-300 px-4 py-3 focus-ring bg-white"></textarea>
+</div>
+
+<button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-blue-700/20 focus-ring">
+Gửi thông tin
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+<footer class="bg-[#0B3C6B] text-blue-100 py-12">
+
+<div class="max-w-7xl mx-auto px-8 grid sm:grid-cols-3 gap-8 items-start">
+
+<div>
+<h4 class="text-white font-bold text-lg font-display">THCS-THPT Liên Việt Kon Tum</h4>
+<p class="text-sm mt-3 leading-6">Nơi nuôi dưỡng tri thức, phát triển kỹ năng và xây dựng thế hệ học sinh tự tin, sáng tạo, hội nhập.</p>
+</div>
+
+<div>
+<h5 class="text-white font-semibold mb-3 font-display">Liên kết nhanh</h5>
+<ul class="space-y-2 text-sm">
+<li><a href="#gioithieu" class="hover:text-white focus-ring">Giới thiệu</a></li>
+<li><a href="#tintuc" class="hover:text-white focus-ring">Tin tức</a></li>
+<li><a href="#tuyensinh" class="hover:text-white focus-ring">Tuyển sinh</a></li>
+<li><a href="#contact" class="hover:text-white focus-ring">Liên hệ</a></li>
+</ul>
+</div>
+
+<div>
+<h5 class="text-white font-semibold mb-3 font-display">Theo dõi chúng tôi</h5>
+<div class="flex gap-4 text-xl">
+<a href="#" class="hover:text-white focus-ring" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+<a href="#" class="hover:text-white focus-ring" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+<a href="#" class="hover:text-white focus-ring" aria-label="Zalo"><i class="fa-solid fa-comment-dots"></i></a>
+</div>
+</div>
+
+</div>
+
+<p class="text-center text-xs mt-10 text-blue-200/70">© 2026 Trường THCS-THPT Liên Việt Kon Tum. Bảo lưu mọi quyền.</p>
+
+</footer>
+
+<script>
+// Mobile menu toggle
+const menuBtn = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+menuBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', isOpen);
+});
+mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+    });
+});
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!prefersReduced && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+                io.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => io.observe(el));
+} else {
+    revealEls.forEach(el => el.classList.add('show'));
+}
+
+// Counter animation
+const counters = document.querySelectorAll('.counter');
+const animateCounter = (el) => {
+    const target = parseInt(el.dataset.target, 10);
+    const duration = 1400;
+    const start = performance.now();
+    const step = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        el.textContent = Math.floor(progress * target) + (progress === 1 ? '+' : '');
+        if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+};
+if ('IntersectionObserver' in window) {
+    const counterIO = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                counterIO.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    counters.forEach(el => counterIO.observe(el));
+}
+</script>
+
+</body>
+</html>
